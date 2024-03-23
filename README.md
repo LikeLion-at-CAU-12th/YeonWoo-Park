@@ -4,6 +4,6 @@
 앞으로 잘 부탁드립니다! 🤩<br>
 
 ***
-<h3>3주차 스탠다드 과제</h3>
+### 3주차 스탠다드 과제
 Postman 스크린샷<br>
-![image](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/cdae8a97-3d68-4c12-ba68-f5e5a0ac286d)
+![스크린샷 2024-03-23 183844](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/6f1bbac4-3ccf-4465-ab0f-02b19eb3b84d)
