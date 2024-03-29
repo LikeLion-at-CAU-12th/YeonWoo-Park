@@ -5,7 +5,7 @@ from django.db import models
 ## 추상 클래스 정의
 class BaseModel(models.Model): # models.Model을 상속 받음
     created_at = models.DateTimeField(verbose_name="작성일시", auto_now_add=True)
-    updated_at = models.DateTimeField(verbode_name="수정일시", auto_now=True)
+    updated_at = models.DateTimeField(verbose_name="수정일시", auto_now=True)
     
     class Meta:
         abstract = True
@@ -14,8 +14,8 @@ class BaseModel(models.Model): # models.Model을 상속 받음
 class Post(BaseModel):
 
     CHOICES = (
-        ('DIARY', '일기')
-        ('STUDY', '공부')
+        ('DIARY', '일기'),
+        ('STUDY', '공부'),
         ('ETC', '기타')
     )
 
