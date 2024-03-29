@@ -38,3 +38,23 @@ def work_challenge(request):
     Me = {'name':'박연우', 'age':'22', 'dept':'CSE', 'github':'https://github.com/only4wxx'}
     Reviewer = {'name':'김예찬', 'age':'25', 'dept':'CSE', 'github':'https://github.com/Yeahcold'}
     return render(request, 'page.html', {'Me': Me, 'Reviewer': Reviewer})
+
+from django.views.decorators.http import require_http_methods
+from posts.models import *
+
+@require_http_methods(["GET"])
+def get_post_detail(request,id):
+    post = get_object_or_404(Post, pk=id)
+    post_detail_json = {
+        "id" : post.id,
+        "title" : post.title,
+        "content" : post.content,
+        "writer" : post.writer,
+        "category" : post.category,
+    }
+
+    return JsonResponse({
+        'status' : 200,
+        'message' : '게시글 조회 성공',
+        'data' : post_detail_json
+    })
