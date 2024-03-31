@@ -17,3 +17,4 @@ a. 작성한 erd<br>
 
 b. admin 페이지에서 comment 테이블 적용된 모습<br>
 ![image](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/8738777f-4599-4add-8d61-2d6f34d57f2e)<br>
+### 4주차 챌린지 과제
