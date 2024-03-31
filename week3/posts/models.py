@@ -25,6 +25,8 @@ class Post(BaseModel):
     writer = models.CharField(verbose_name="작성자", max_length=10)
     category = models.CharField(choices=CHOICES, max_length=20)
 
+    hash_tag = models.CharField(verbose_name="해시태그", max_length=20, null=True)
+
 class Comment(BaseModel):
 
     id = models.AutoField(primary_key=True)
