@@ -7,3 +7,6 @@
 ### 3주차 스탠다드 과제
 Postman 스크린샷<br>
 ![스크린샷 2024-03-23 183844](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/6f1bbac4-3ccf-4465-ab0f-02b19eb3b84d)
+### 3주차 챌린지 과제
+화면 스크린샷<br>
+![스크린샷 2024-03-24 001951](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/c8ec6ce6-63cd-4199-823c-e4cf39182c29)
