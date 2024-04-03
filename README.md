@@ -13,7 +13,7 @@ Postman 스크린샷<br>
 ***
 ### 4주차 스탠다드 과제
 a. 작성한 erd<br>
-![image](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/698b0137-f04e-4bf6-a525-71a22578c083)<br>
+![image](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/2bf529d0-8f4c-4165-8644-c725b074c5c9)<br>
 
 b. admin 페이지에서 comment 테이블 적용된 모습<br>
 ![image](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/8738777f-4599-4add-8d61-2d6f34d57f2e)<br>
