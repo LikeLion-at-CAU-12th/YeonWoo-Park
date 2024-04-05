@@ -41,6 +41,30 @@ def work_challenge(request):
 
 from django.views.decorators.http import require_http_methods
 from posts.models import *
+import json
+
+@require_http_methods(["GET"])
+def post_list(request): # 전체 post를 읽어옴
+    if request.method == "GET":
+        post_all = Post.objects.all()
+
+        # 각 데이터를 Json 형식으로 반환하여 리스트에 저장
+        post_json_all = []
+        
+        for post in post_all:
+            post_json = {
+                "id": post.id,
+                "title" : post.title,
+                # "writer": post.writer,
+                "category": post.category
+            }
+            post_json_all.append(post_json)
+
+        return JsonResponse({
+            'status': 200,
+            'message': '게시글 목록 조회 성공',
+            'data': post_json_all
+        })
 
 @require_http_methods(["GET"])
 def get_post_detail(request,id):
