@@ -49,7 +49,7 @@ def get_post_detail(request,id):
         "id" : post.id,
         "title" : post.title,
         "content" : post.content,
-        "writer" : post.writer,
+        # "writer" : post.writer, # Post 테이블의 writer가 User 테이블을 참조하는 외래키라서 그런지 이 코드가 작동하지 않음... 따라서 주석처리
         "category" : post.category,
     }
 
