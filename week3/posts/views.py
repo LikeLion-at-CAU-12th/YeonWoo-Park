@@ -67,7 +67,7 @@ def post_list(request): # 전체 post를 읽어옴
         })
 
 @require_http_methods(["GET"])
-def get_post_detail(request,id):
+def get_post_detail(request,id): # 개별 post를 읽어옴
     post = get_object_or_404(Post, pk=id)
     post_detail_json = {
         "id" : post.id,
@@ -82,3 +82,25 @@ def get_post_detail(request,id):
         'message' : '게시글 조회 성공',
         'data' : post_detail_json
     })
+
+@require_http_methods(["GET"])
+def get_comments_of_post(request, id): # 특정 게시글에 포함된 모든 comment 읽어오는 API 만들기
+    if request.method == "GET":
+        post = get_object_or_404(Post, pk=id)
+        comment_all = Comment.objects.filter(post_id=post.id)
+
+        comment_json_all = []
+
+        for comment in comment_all:
+            comment_json = {
+                "id": comment.id,
+                # "writer": comment.writer,
+                "content" : comment.content
+            }
+            comment_json_all.append(comment_json)
+        
+        return JsonResponse({
+            'status': 200,
+            'message': '게시글에 포함된 모든 comment 조회 성공',
+            'data': comment_json_all
+        })
