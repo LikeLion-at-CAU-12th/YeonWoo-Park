@@ -87,8 +87,7 @@ def get_post_detail(request,id): # 개별 post를 읽어옴
 @require_http_methods(["GET"])
 def get_comments_of_post(request, id): # 특정 게시글에 포함된 모든 comment 읽어오는 API 만들기
     if request.method == "GET":
-        post = get_object_or_404(Post, pk=id)
-        comment_all = Comment.objects.filter(post_id=post.id)
+        comment_all = Comment.objects.filter(post_id=id)
 
         comment_json_all = []
 
