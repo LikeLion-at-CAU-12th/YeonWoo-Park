@@ -44,8 +44,36 @@ from posts.models import *
 import json
 from datetime import *
 
-@require_http_methods(["GET"])
-def post_list(request): # 전체 post를 읽어옴
+@require_http_methods(["POST", "GET"])
+def post_list(request):
+    if request.method == "POST":
+        body = json.loads(request.body.decode('utf-8'))
+
+        writer_id = body.get('writer')
+        writer = User.objects.get(pk=writer_id)
+        # 새로운 데이터를 DB에 생성
+        new_post = Post.objects.create(
+            title = body['title'],
+            content = body['content'],
+            writer = writer,
+            category = body['category']
+        )
+
+        # Response에서 보일 데이터 내용을 Json 형태로 만들어줌
+        new_post_json = {
+            "id": new_post.id,
+            "title" : new_post.title,
+            "content": new_post.content,
+            "writer": new_post.writer.id,
+            "category": new_post.category
+        }
+
+        return JsonResponse({
+            'status': 200,
+            'message': '게시글 생성 성공',
+            'data': new_post_json
+        })
+
     if request.method == "GET":
         post_all = Post.objects.all()
 
@@ -56,6 +84,7 @@ def post_list(request): # 전체 post를 읽어옴
             post_json = {
                 "id": post.id,
                 "title" : post.title,
+                "content": post.content,
                 "writer": post.writer.id,
                 "category": post.category
             }
