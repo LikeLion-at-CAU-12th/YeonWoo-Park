@@ -106,9 +106,9 @@ def get_comments_of_post(request, id): # 특정 게시글에 포함된 모든 co
         })
 
 @require_http_methods(["GET"])
-def a_week_post_list(request):
+def a_week_post_list(request): # 최근 일주일 동안 작성된 게시글 목록을 볼 수 있는 API
     if request.method == "GET":
-        post_all = Post.objects.filter(created_at__range=(date(2024, 4, 4), date(2024, 4, 10))).order_by('-created_at')
+        post_all = Post.objects.filter(created_at__gte=(date.today() - timedelta(days=6))).order_by('-created_at')
 
         post_json_all = []
         
