@@ -19,3 +19,7 @@ b. admin 페이지에서 comment 테이블 적용된 모습<br>
 ![image](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/8738777f-4599-4add-8d61-2d6f34d57f2e)<br>
 ***
 ### 5주차 스탠다드 과제
+a. 특정 게시글에 포함된 모든 comment 읽어오는 API 만들기<br>
+![image](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/249fec00-2489-4c66-9fe0-fd3d06d088d4)<br>
+b. 최근 일주일 동안 작성된 post 가져오는 API 만들기<br>
+![image](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/830e8182-d2e6-463a-b196-415fec1eb3c7)<br>
