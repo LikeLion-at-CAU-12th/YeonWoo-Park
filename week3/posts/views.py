@@ -56,7 +56,7 @@ def post_list(request): # 전체 post를 읽어옴
             post_json = {
                 "id": post.id,
                 "title" : post.title,
-                # "writer": post.writer,
+                "writer": post.writer.id,
                 "category": post.category
             }
             post_json_all.append(post_json)
@@ -74,7 +74,7 @@ def get_post_detail(request,id): # 개별 post를 읽어옴
         "id" : post.id,
         "title" : post.title,
         "content" : post.content,
-        # "writer" : post.writer, # Post 테이블의 writer가 User 테이블을 참조하는 외래키라서 그런지 이 코드가 작동하지 않음... 따라서 주석처리
+        "writer" : post.writer.id,
         "category" : post.category,
     }
 
@@ -94,7 +94,7 @@ def get_comments_of_post(request, id): # 특정 게시글에 포함된 모든 co
         for comment in comment_all:
             comment_json = {
                 "id": comment.id,
-                # "writer": comment.writer,
+                "writer": comment.writer.id,
                 "content" : comment.content
             }
             comment_json_all.append(comment_json)
@@ -116,7 +116,7 @@ def a_week_post_list(request): # 최근 일주일 동안 작성된 게시글 목
             post_json = {
                 "id": post.id,
                 "title" : post.title,
-                # "writer": post.writer,
+                "writer": post.writer.id,
                 "category": post.category
             }
             post_json_all.append(post_json)
