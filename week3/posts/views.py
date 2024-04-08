@@ -96,22 +96,49 @@ def post_list(request):
             'data': post_json_all
         })
 
-@require_http_methods(["GET"])
-def get_post_detail(request,id): # 개별 post를 읽어옴
-    post = get_object_or_404(Post, pk=id)
-    post_detail_json = {
-        "id" : post.id,
-        "title" : post.title,
-        "content" : post.content,
-        "writer" : post.writer.id,
-        "category" : post.category,
-    }
+@require_http_methods(["GET", "PATCH"])
+def post_detail(request,id):
+    if request.method == "GET":
+        post = get_object_or_404(Post, pk=id)
 
-    return JsonResponse({
-        'status' : 200,
-        'message' : '게시글 조회 성공',
-        'data' : post_detail_json
-    })
+        post_detail_json = {
+            "id" : post.id,
+            "title" : post.title,
+            "content" : post.content,
+            "writer" : post.writer.id,
+            "category" : post.category,
+        }
+
+        return JsonResponse({
+            'status' : 200,
+            'message' : '게시글 조회 성공',
+            'data' : post_detail_json
+        })
+    
+    if request.method == "PATCH":
+        body = json.loads(request.body.decode('utf-8'))
+
+        update_post = get_object_or_404(Post, pk=id)
+
+        update_post.title = body['title']
+        update_post.content = body['content']
+        update_post.category = body['category']
+
+        update_post.save()
+
+        update_post_json = {
+            "id": update_post.id,
+            "title" : update_post.title,
+            "content": update_post.content,
+            "writer": update_post.writer.id,
+            "category": update_post.category,
+        }
+
+        return JsonResponse({
+            'status': 200,
+            'message': '게시글 수정 성공',
+            'data': update_post_json
+        })
 
 @require_http_methods(["GET"])
 def get_comments_of_post(request, id): # 특정 게시글에 포함된 모든 comment 읽어오는 API 만들기
