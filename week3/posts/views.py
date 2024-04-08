@@ -96,7 +96,7 @@ def post_list(request):
             'data': post_json_all
         })
 
-@require_http_methods(["GET", "PATCH"])
+@require_http_methods(["GET", "PATCH", "DELETE"])
 def post_detail(request,id):
     if request.method == "GET":
         post = get_object_or_404(Post, pk=id)
@@ -138,6 +138,16 @@ def post_detail(request,id):
             'status': 200,
             'message': '게시글 수정 성공',
             'data': update_post_json
+        })
+    
+    if request.method == "DELETE":
+        delete_post = get_object_or_404(Post, pk=id)
+        delete_post.delete()
+
+        return JsonResponse({
+                'status': 200,
+                'message': '게시글 삭제 성공',
+                'data': None
         })
 
 @require_http_methods(["GET"])
