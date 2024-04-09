@@ -82,6 +82,7 @@ def post_list(request):
                 "id": post.id,
                 "title" : post.title,
                 "content": post.content,
+                "image_url": post.image.url if post.image else "",
                 "writer": post.writer.id,
                 "category": post.category
             }
@@ -102,6 +103,7 @@ def post_detail(request,id):
             "id" : post.id,
             "title" : post.title,
             "content" : post.content,
+            "image_url": post.image.url if post.image else "",
             "writer" : post.writer.id,
             "category" : post.category,
         }
@@ -127,6 +129,7 @@ def post_detail(request,id):
             "id": update_post.id,
             "title" : update_post.title,
             "content": update_post.content,
+            "image_url": update_post.image.url if update_post.image else "",
             "writer": update_post.writer.id,
             "category": update_post.category,
         }
