@@ -47,31 +47,28 @@ from datetime import *
 @require_http_methods(["POST", "GET"])
 def post_list(request):
     if request.method == "POST":
-        body = json.loads(request.body.decode('utf-8'))
+        new_post = Post()
 
-        writer_id = body.get('writer')
-        writer = User.objects.get(pk=writer_id)
-        # 새로운 데이터를 DB에 생성
-        new_post = Post.objects.create(
-            title = body['title'],
-            content = body['content'],
-            writer = writer,
-            category = body['category']
-        )
+        new_post.title = request.POST.get('title')
+        new_post.content = request.POST.get('content')
+        new_post.image = request.FILES.get('image')
+        writer_id = request.POST.get('writer')
+        new_post.writer = User.objects.get(pk=writer_id)
+        new_post.category = request.POST.get('category')
+        new_post.save()
 
-        # Response에서 보일 데이터 내용을 Json 형태로 만들어줌
-        new_post_json = {
-            "id": new_post.id,
-            "title" : new_post.title,
-            "content": new_post.content,
-            "writer": new_post.writer.id,
-            "category": new_post.category
-        }
-
+        print(new_post.image.url)
         return JsonResponse({
             'status': 200,
             'message': '게시글 생성 성공',
-            'data': new_post_json
+            'data': {
+                "id": new_post.id,
+                "title" : new_post.title,
+                "content": new_post.content,
+                "image_url": new_post.image.url,
+                "writer": new_post.writer.id,
+                "category": new_post.category
+            }
         })
 
     if request.method == "GET":
