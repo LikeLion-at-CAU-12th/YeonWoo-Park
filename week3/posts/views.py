@@ -57,11 +57,6 @@ def post_list(request):
         new_post.category = request.POST.get('category')
         new_post.save()
 
-        if new_post.image:
-            image_url = new_post.image.url
-        else:
-            image_url = ""
-
         return JsonResponse({
             'status': 200,
             'message': '게시글 생성 성공',
@@ -69,7 +64,7 @@ def post_list(request):
                 "id": new_post.id,
                 "title" : new_post.title,
                 "content": new_post.content,
-                "image_url": image_url,
+                "image_url": new_post.image.url if new_post.image else "",
                 "writer": new_post.writer.id,
                 "category": new_post.category
             },
