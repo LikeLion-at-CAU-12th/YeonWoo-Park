@@ -23,3 +23,6 @@ a. 특정 게시글에 포함된 모든 comment 읽어오는 API 만들기<br>
 ![image](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/249fec00-2489-4c66-9fe0-fd3d06d088d4)<br>
 b. 최근 일주일 동안 작성된 post 가져오는 API 만들기<br>
 ![image](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/830e8182-d2e6-463a-b196-415fec1eb3c7)<br>
+### 5주차 챌린지 과제
+이미지를 포함한 post를 생성하는 API로 수정<br>
+![image](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/4ad417fa-a206-4f18-9b09-2c97f43fb6bc)<br>
