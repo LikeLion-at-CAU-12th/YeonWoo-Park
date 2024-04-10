@@ -49,7 +49,7 @@ def post_list(request):
     if request.method == "POST":
         new_post = Post()
 
-        new_post.title = request.POST.get('title')
+        new_post.title = request.POST['title']
         new_post.content = request.POST.get('content')
         new_post.image = request.FILES.get('image')
         writer_id = request.POST.get('writer')
