@@ -26,3 +26,6 @@ b. 최근 일주일 동안 작성된 post 가져오는 API 만들기<br>
 ### 5주차 챌린지 과제
 이미지를 포함한 post를 생성하는 API로 수정<br>
 ![image](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/4ad417fa-a206-4f18-9b09-2c97f43fb6bc)<br>
+***
+### 6주차 스탠다드 과제
+![image](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/88b94927-ce61-4f71-93d4-8258d9044799)<br>
