@@ -192,3 +192,17 @@ def a_week_post_list(request): # 최근 일주일 동안 작성된 게시글 목
             'message': '게시글 목록 조회 성공',
             'data': post_json_all
         })
+
+from .serializers import PostSerializer, CommentSerializer
+
+# APIView를 사용하기 위해 import
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from django.http import Http404
+
+class GetCommentsOfPost(APIView):
+    def get(self, request, id): # get_comments_of_post 함수
+        comment_all = Comment.objects.filter(post_id=id)
+        serializer = CommentSerializer(comment_all, many=True)
+        return Response(serializer.data)
