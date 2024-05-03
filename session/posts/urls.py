@@ -8,5 +8,6 @@ urlpatterns = [
     path('', post_list, name="post_list"), # Post 전체 조회
     path('week/', a_week_post_list, name="최근 일주일 동안 작성된 게시글 목록 조회"),
     path('<int:id>/', post_detail, name = "게시글 조회"),
-    path('<int:id>/comment/', get_comments_of_post, name = "게시글의 모든 코멘트 조회")
+    # path('<int:id>/comment/', get_comments_of_post, name = "게시글의 모든 코멘트 조회")
+    path('<int:id>/comment/', GetCommentsOfPost.as_view())
 ]
