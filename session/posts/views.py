@@ -232,3 +232,10 @@ class PostDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.Dest
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+class aWeekPostList(mixins.ListModelMixin, generics.GenericAPIView):
+    queryset = Post.objects.filter(created_at__gte=(date.today() - timedelta(days=6))).order_by('-created_at')
+    serializer_class = PostSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
