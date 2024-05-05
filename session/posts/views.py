@@ -206,3 +206,16 @@ class GetCommentsOfPost(APIView):
         comment_all = Comment.objects.filter(post_id=id)
         serializer = CommentSerializer(comment_all, many=True)
         return Response(serializer.data)
+
+from rest_framework import generics
+from rest_framework import mixins
+
+class PostList(mixins.CreateModelMixin, mixins.ListModelMixin, generics.GenericAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+    
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
