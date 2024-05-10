@@ -2,6 +2,7 @@ from rest_framework_simplejwt.serializers import RefreshToken
 from rest_framework import serializers
 from .models import User
 
+# 회원가입 구현
 class RegisterSerializer(serializers.ModelSerializer): # ModelSerializer를 상속받음
     password = serializers.CharField(required=True) # serializer를 통해 패스워드가 맞는지 확인
     username = serializers.CharField(required=True)
