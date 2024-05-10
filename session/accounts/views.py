@@ -34,7 +34,7 @@ class RegisterView(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class AuthView(APIView):
-    def post(self, request):
+    def post(self, request): # 로그인을 수행
         serializer = AuthSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             user = serializer.validated_data["user"]
