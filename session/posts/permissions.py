@@ -10,3 +10,11 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS: # 요청된 메소드가 안전한 메소드인 경우 허용
             return True
         return obj.writer.id == request.user.id # 작성자인지 확인
+
+class IsSecretKey(permissions.BasePermission):
+    """
+    header에 key 값을 입력 받은 후 key 문구를 맞게 입력한 사용자만 모든 API 요청을 허용
+    """
+
+    def has_permission(self, request, view):
+        return request.headers.get('SecretKey') == '0921'
