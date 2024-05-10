@@ -206,3 +206,36 @@ class GetCommentsOfPost(APIView):
         comment_all = Comment.objects.filter(post_id=id)
         serializer = CommentSerializer(comment_all, many=True)
         return Response(serializer.data)
+
+from rest_framework import generics
+from rest_framework import mixins
+
+class PostList(mixins.CreateModelMixin, mixins.ListModelMixin, generics.GenericAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+    
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+class PostDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+class aWeekPostList(mixins.ListModelMixin, generics.GenericAPIView):
+    queryset = Post.objects.filter(created_at__gte=(date.today() - timedelta(days=6))).order_by('-created_at')
+    serializer_class = PostSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
