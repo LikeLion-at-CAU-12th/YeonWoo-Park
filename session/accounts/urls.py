@@ -10,4 +10,5 @@ urlpatterns = [
     # 회원가입/로그인/로그아웃
     path("join/", RegisterView.as_view()),
     path("login/", AuthView.as_view()),
+    path("logout/", LogoutView.as_view()),
 ]

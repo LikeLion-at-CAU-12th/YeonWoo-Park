@@ -7,6 +7,8 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from accounts.serializers import *
+from django.contrib.auth import logout
+from rest_framework.permissions import IsAuthenticated
 
 class RegisterView(APIView):
 
@@ -59,3 +61,10 @@ class AuthView(APIView):
             return res
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class LogoutView(APIView):
+    permission_classes = [IsAuthenticated] # 사용자가 인증되었는지 확인
+    
+    def post(self, request): # 로그아웃을 수행
+        logout(request)
+        return Response({"message": "로그아웃되었습니다."}, status=status.HTTP_200_OK)
