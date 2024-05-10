@@ -32,3 +32,30 @@ class RegisterView(APIView):
             return res
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class AuthView(APIView):
+    def post(self, request):
+        serializer = AuthSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            user = serializer.validated_data["user"]
+            access_token = serializer.validated_data["access_token"]
+            refresh_token = serializer.validated_data["refresh_token"]
+            res = Response(
+                {
+                    "user": {
+                        "id": user.id,
+                        "email": user.email,
+                    },
+                    "message": "login success",
+                    "token": {
+                        "access_token": access_token,
+                        "refresh_token": refresh_token,
+                    },
+                },
+                status=status.HTTP_200_OK,
+            )
+            res.set_cookie("access-token", access_token, httponly=True) # set_cookie를 통해 발행한 토큰 정보가 'Cookie'라는 key의 value로 저장됨
+            res.set_cookie("refresh-token", refresh_token, httponly=True)
+            return res
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
