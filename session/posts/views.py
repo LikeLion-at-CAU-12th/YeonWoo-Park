@@ -209,6 +209,7 @@ class GetCommentsOfPost(APIView):
 
 from rest_framework import generics
 from rest_framework import mixins
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 class PostList(mixins.CreateModelMixin, mixins.ListModelMixin, generics.GenericAPIView):
     queryset = Post.objects.all()
@@ -221,6 +222,8 @@ class PostList(mixins.CreateModelMixin, mixins.ListModelMixin, generics.GenericA
         return self.list(request, *args, **kwargs)
 
 class PostDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly] # 아래 기능들은 로그인 해야만 사용할 수 있도록
+    
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
