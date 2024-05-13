@@ -209,8 +209,11 @@ class GetCommentsOfPost(APIView):
 
 from rest_framework import generics
 from rest_framework import mixins
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from .permissions import *
 
 class PostList(mixins.CreateModelMixin, mixins.ListModelMixin, generics.GenericAPIView):
+    permission_classes = [IsSecretKey]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
@@ -221,6 +224,8 @@ class PostList(mixins.CreateModelMixin, mixins.ListModelMixin, generics.GenericA
         return self.list(request, *args, **kwargs)
 
 class PostDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly, IsSecretKey]
+    
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 

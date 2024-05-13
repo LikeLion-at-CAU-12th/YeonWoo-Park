@@ -61,6 +61,7 @@ THIRD_PARTY_APPS = [
     'corsheaders',
     'rest_framework',
     'drf_yasg',
+    'rest_framework_simplejwt',
 ]
 
 
@@ -165,3 +166,21 @@ MEDIA_URL = '/media/' # 항상 / 로 끝나도록 설정
 
 # 업로드된 파일을 저장할 디렉토리 경로
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+from datetime import timedelta
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication', # 이 인증을 사용할 것이다
+    ),
+}
+
+REST_USE_JWT = True
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=3),    # access token 시간 지정 - 유효기간 3시간
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),    # refresh token 시간 지정 - 유효기간 7일
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'TOKEN_USER_CLASS': 'accounts.User', # 사용자 모델을 accounts 안에 만들었던 User 모델과 연결
+}
