@@ -1,6 +1,7 @@
 from rest_framework_simplejwt.serializers import RefreshToken
 from rest_framework import serializers
 from .models import User
+from allauth.socialaccount.models import SocialAccount
 
 class OAuthSerializer(serializers.ModelSerializer):
     email = serializers.CharField(required=True)
@@ -16,7 +17,11 @@ class OAuthSerializer(serializers.ModelSerializer):
         
         if user is None:
             raise serializers.ValidationError("user account not exists")
-
+        
+        social_user = SocialAccount.objects.get(user=user)  # 소셜로그인 계정 유무 확인
+        if social_user.provider != 'google':
+	        raise serializers.ValidationError("user did not sign up with a social account")
+        
         token = RefreshToken.for_user(user)
         refresh_token = str(token)
         access_token = str(token.access_token)
