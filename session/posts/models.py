@@ -26,6 +26,7 @@ class Post(BaseModel):
     image = models.ImageField(upload_to="images/", blank=True, null=True, verbose_name="이미지")
     writer = models.ForeignKey(User, on_delete=models.CASCADE, db_column="writer", verbose_name="작성자")
     category = models.CharField(choices=CHOICES, max_length=30)
+    thumbnail = models.ImageField(null=True, blank=True, verbose_name="썸네일") # 추가
 
 class Comment(BaseModel):
 

@@ -93,7 +93,7 @@ AWS_SECRET_ACCESS_KEY = get_secret("AWS_SECRET_ACCESS_KEY") # .csv 파일에 있
 AWS_REGION = 'ap-northeast-2'
 
 ###S3###
-AWS_STORAGE_BUCKET_NAME = 'lionsession'
+AWS_STORAGE_BUCKET_NAME = 'likelion12th' # 내 버킷과 연결
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME,AWS_REGION)
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
