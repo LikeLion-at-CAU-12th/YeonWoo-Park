@@ -10,7 +10,7 @@ class PostSerializer(serializers.ModelSerializer):
 		# 모델에서 어떤 필드를 가져올지
 		# 전부 가져오고 싶을 때
         fields = "__all__"
-
+    
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
