@@ -132,10 +132,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.mysql',
-		'NAME': 'likelion12th',
-		'USER': 'root', # root로 접속하여 DB를 만들었다면 'root'
-		'PASSWORD': '0921',
-		'HOST': 'localhost',
+		'NAME': get_secret("DB_NAME"),
+		'USER': 'admin',
+		'PASSWORD': get_secret("DB_PASSWORD"),
+		'HOST': get_secret("DB_HOST"),
 		'PORT': '3306', # default mysql portnumber
 	}
 }
