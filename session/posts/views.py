@@ -211,6 +211,7 @@ from rest_framework import generics
 from rest_framework import mixins
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .permissions import *
+from config.settings import AWS_S3_CUSTOM_DOMAIN
 
 class PostList(mixins.CreateModelMixin, mixins.ListModelMixin, generics.GenericAPIView):
     permission_classes = [IsSecretKey]
@@ -218,7 +219,19 @@ class PostList(mixins.CreateModelMixin, mixins.ListModelMixin, generics.GenericA
     serializer_class = PostSerializer
 
     def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
+        file = request.FILES.get('thumbnail')
+        thumbnail_url = "https://" + AWS_S3_CUSTOM_DOMAIN + "/" + str(file)
+
+        instance = Post.objects.create(
+            title = request.POST['title'],
+            content = request.POST.get('content'),
+            image = request.FILES.get('image'),
+            writer = User.objects.get(pk=request.POST.get('writer')),
+            category = request.POST.get('category'),
+            thumbnail = thumbnail_url
+            )
+
+        return Response(self.get_serializer(instance).data)
     
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
