@@ -13,10 +13,7 @@ class PostSerializer(serializers.ModelSerializer):
         # fields = ['id', 'title', 'content', 'image', 'writer', 'category', 'created_at', 'updated_at']
     
     def create(self, validated_data): # serializer를 대상으로 save() 메소드를 호출하여 DB 인스턴스를 생성할 때의 동작 정의
-        print('11111111111111111')
         instance = Post.objects.create(**validated_data)
-        print('222222222222222222222222222')
-        print(instance.thumbnail)
         image = validated_data.get("thumbnail", None)
         ext = str(image).split('.')[-1] # ext에 확장자 명이 담김
         ext = ext.lower() # 확장자를 소문자로 통일
