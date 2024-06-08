@@ -219,7 +219,7 @@ class PostList(mixins.CreateModelMixin, mixins.ListModelMixin, generics.GenericA
     serializer_class = PostSerializer
 
     def post(self, request, *args, **kwargs):
-        file = request.FILES.get('thumbnail')
+        file = request.FILES.get('thumbnail') # 썸네일 파일을 받아옴
         thumbnail_url = "https://" + AWS_S3_CUSTOM_DOMAIN + "/" + str(file)
 
         instance = Post.objects.create(
@@ -228,7 +228,7 @@ class PostList(mixins.CreateModelMixin, mixins.ListModelMixin, generics.GenericA
             image = request.FILES.get('image'),
             writer = User.objects.get(pk=request.POST.get('writer')),
             category = request.POST.get('category'),
-            thumbnail = thumbnail_url
+            thumbnail = thumbnail_url # 썸네일 파일을 url로 바꾸어 저장
             )
 
         return Response(self.get_serializer(instance).data)
