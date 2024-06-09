@@ -212,6 +212,7 @@ from rest_framework import mixins
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .permissions import *
 from config.settings import AWS_S3_CUSTOM_DOMAIN
+from PIL import Image
 
 class PostList(mixins.CreateModelMixin, mixins.ListModelMixin, generics.GenericAPIView):
     permission_classes = [IsSecretKey]
@@ -221,6 +222,9 @@ class PostList(mixins.CreateModelMixin, mixins.ListModelMixin, generics.GenericA
     def post(self, request, *args, **kwargs):
         file = request.FILES.get('thumbnail') # 썸네일 파일을 받아옴
         thumbnail_url = "https://" + AWS_S3_CUSTOM_DOMAIN + "/" + str(file)
+
+        resize_image = Image.open(file).resize((500, 500))
+        resize_image.convert("RGB").save('media/images/'+str(file))
 
         instance = Post.objects.create(
             title = request.POST['title'],
