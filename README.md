@@ -40,3 +40,7 @@ b. 최근 일주일 동안 작성된 post 가져오는 API 만들기<br>
 ***
 ### 11주차 스탠다드 과제
 ![image](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/b9f55d4d-eb03-4bce-8cad-b2fd6d85038f)
+***
+### 12주차 스탠다드 과제
+![image](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/997ef4aa-9467-4c48-9ff4-68a98cf08a70)
+![image](https://github.com/LikeLion-at-CAU-12th/YeonWoo-Park/assets/125821804/8754d128-0acb-4c32-8d46-cb0a14c76254)
